@@ -1,7 +1,27 @@
 import { useState, useEffect } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { ToolHero, ScoreCard, SectionBreakdown, CompareLayout, Rewrites, CrossPromo, track } from './kit.js';
+import { ToolHero, ScoreCard, SectionBreakdown, CompareLayout, Rewrites, CrossPromo, track } from '@bilkobibitkov/host-kit';
+
+const AD_SCORER_THEME = {
+  heroGradient: 'from-[#0d1f17] via-[#0a1510] to-[#0d1f17]',
+  glowColor: 'rgba(16,185,129,0.14)',
+  accentText: 'text-emerald-400',
+  accentTextLight: 'text-emerald-500',
+};
+
+const CROSS_PROMO_ITEMS = [
+  {
+    name: 'PageRoast',
+    href: 'https://bilko.run/products/page-roast',
+    hook: 'Ad scored. Now roast the landing page it sends people to.',
+  },
+  {
+    name: 'EmailForge',
+    href: 'https://bilko.run/products/email-forge',
+    hook: 'Ads drive clicks. Emails close deals. Generate your sequence.',
+  },
+];
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -180,6 +200,7 @@ export function AdScorerPage() {
 
       {/* ── Hero + Input ─────────────────────────────────────────────── */}
       <ToolHero
+        theme={AD_SCORER_THEME}
         title="Score or generate ad copy"
         tagline="AI grades hook, value prop, emotion, and CTA — or writes ads from your description"
       >
@@ -409,6 +430,7 @@ export function AdScorerPage() {
               grade={result.grade}
               verdict={result.verdict}
               toolName="Ad Scorer"
+              theme={AD_SCORER_THEME}
             />
             <div className="bg-white rounded-2xl border border-warm-200/60 p-4 text-center animate-slide-up" style={{ animationDelay: '80ms' }}>
               <p className="text-sm font-semibold text-warm-700">{getBenchmark(result.total_score)}</p>
@@ -445,7 +467,7 @@ export function AdScorerPage() {
             {result.rewrites && result.rewrites.length > 0 && (
               <Rewrites rewrites={result.rewrites} noun="rewrite" />
             )}
-            <CrossPromo />
+            <CrossPromo items={CROSS_PROMO_ITEMS} />
             <div className="text-center pt-4">
               <button
                 onClick={() => { reset(); setAdCopy(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
