@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
 import { useToolApi } from './useToolApi.js';
-import { ToolHero, ScoreCard, SectionBreakdown, CompareLayout, Rewrites, CrossPromo, track } from '@bilkobibitkov/host-kit';
+import { ToolHero, ScoreCard, SectionBreakdown, CompareLayout, Rewrites, CrossPromo, track } from 'host-kit';
 
 const AD_SCORER_THEME = {
   heroGradient: 'from-[#0d1f17] via-[#0a1510] to-[#0d1f17]',
